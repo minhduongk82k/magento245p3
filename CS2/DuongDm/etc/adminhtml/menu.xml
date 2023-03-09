@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="CS2_DuongDm::blog_id" title="CS2" module="CS2_DuongDm" sortOrder="10" resource="CS2_DuongDm::blog_id"/>
+        <add id="CS2_DuongDm::blog_id_inside" parent="CS2_DuongDm::blog_id" title="Blog" module="CS2_DuongDm" sortOrder="10" action="duongdm/index/index" resource="CS2_DuongDm::blog_id"/>
+    </menu>
+</config>

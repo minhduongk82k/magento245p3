@@ -1,0 +1,46 @@
+<?php
+/** @var \CS2\DuongDm\Block\Post $block */
+?>
+<?php $customCollection = $block->getCustomCollection(); ?>
+
+
+<style>
+    table {  font-family: arial, sans-serif;  border-collapse: collapse;  width: 100%;  margin-top: 30px;}
+    td, th {  border: 1px solid #dddddd;  text-align: left;  padding: 8px;  }
+    tr:nth-child(even) { background-color: #dddddd; }
+    .post-id{width:2%} .post-name{width:30%}
+
+</style>
+
+<table>
+    <tr>
+        <th class="blog_id">Id</th>
+        <th class="name">Name</th>
+        <th class="name">Author</th>
+        <th class="name">Short Description</th>
+        <th class="name">Description</th>
+        <th class="public_date">Public Date</th>
+    </tr>
+
+    <?php
+    foreach ($customCollection as $key => $post):?>
+        <tr>
+            <td><a href="<?= $block->getBlogbyId('blog_id',$post->getBlogId())?>"><?=$post->getBlogId()?></td></a>
+            <td><?=$post->getName()?></td>
+            <td><?=$post->getAuthor()?></td>
+            <td><?=$post->getShortDes()?></td>
+            <td><?=$post->getDescription()?></td>
+            <td><?=$post->getPublicDate()?></td>
+        </tr>
+    <?php
+    endforeach;
+    ?>
+
+    <?php if ($customCollection): ?>
+        <div class="order-products-toolbar toolbar bottom"><?php echo $block->getPagerHtml(); ?></div>
+    <?php endif ?>
+</table>
+
+
+</body>
+</html>

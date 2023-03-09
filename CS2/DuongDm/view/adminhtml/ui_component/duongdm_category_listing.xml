@@ -1,0 +1,101 @@
+<?xml version="1.0" ?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">duongdm_category_listing.duongdm_category_listing_data_source</item>
+        </item>
+        <item name="buttons" xsi:type="array">
+            <item name="add" xsi:type="array">
+                <item name="name" xsi:type="string">create</item>
+                <item name="label" xsi:type="string" translate="true">Create New Blog</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="url" xsi:type="string">*/*/newaction</item>
+            </item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>cs2_duongdm_category_columns</spinner>
+        <deps>
+            <dep>duongdm_category_listing.duongdm_category_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="duongdm_category_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">category_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>CS2_DuongDm::Category</aclResource>
+        <dataProvider name="duongdm_category_listing_data_source" class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+            <settings>
+                <requestFieldName>category_id</requestFieldName>
+                <primaryFieldName>category_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters"/>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="cs2_duongdm_category_columns">
+        <settings>
+            <editorConfig>
+                <param name="selectProvider" xsi:type="string">duongdm_category_listing.duongdm_category_listing.cs2_duongdm_category_columns.ids</param>
+                <param name="enabled" xsi:type="boolean">true</param>
+                <param name="indexField" xsi:type="string">category_id</param>
+                <param name="clientConfig" xsi:type="array">
+                    <item name="saveUrl" xsi:type="url" path="cs2_duongdm/Category/inlineEdit"/>
+                    <item name="validateBeforeSave" xsi:type="boolean">false</item>
+                </param>
+            </editorConfig>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">duongdm_category_listing.duongdm_category_listing.cs2_duongdm_category_columns_editor</item>
+                    <item name="target" xsi:type="string">startEdit</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                        <item name="1" xsi:type="boolean">true</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
+        <column name="category_id" sortOrder="1">
+            <settings>
+                <filter>text</filter>
+                <sorting>asc</sorting>
+                <label translate="true">ID</label>
+            </settings>
+        </column>
+        <column name="name" sortOrder="5">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">name</label>
+                <editor>
+                    <editorType>text</editorType>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">false</rule>
+                    </validation>
+                </editor>
+            </settings>
+        </column>
+        <column name="cate_parent_id" sortOrder="8">
+            <settings>
+                <label translate="true">Parent ID</label>
+                <filter>textRange</filter>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="CS2\DuongDm\Ui\Component\Listing\Column\CategoryActions" sortOrder="10">
+            <settings>
+                <indexField>category_id</indexField>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>107</resizeDefaultWidth>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

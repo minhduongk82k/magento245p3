@@ -1,0 +1,24 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="main">
+            <block class="CS2\DuongDm\Block\Post" name="list.posts" template="CS2_DuongDm::index.phtml"
+                   cacheable="false"/>
+        </referenceContainer>
+        <referenceBlock name="catalog.compare.sidebar" remove="true"/>
+        <referenceBlock name="wishlist_sidebar" remove="true"/>
+        <referenceContainer name="sidebar.additional">
+            <block class="CS2\DuongDm\Block\Frontend\ListCategory" name="list.categories"
+                   template="CS2_DuongDm::listCategory.phtml" cacheable="false"/>
+        </referenceContainer>
+        <referenceContainer name="main.content">
+            <block class="CS2\DuongDm\Block\Frontend\Search" name="post.search" as="topSearch"
+                   template="CS2_DuongDm::search.phtml" before="-"/>
+        </referenceContainer>
+    </body>
+    <referenceBlock name="list.posts">
+        <action method="setPageTitle">
+            <argument translate="true" name="title" xsi:type="string">Custom Pagination</argument>
+        </action>
+    </referenceBlock>
+</page>

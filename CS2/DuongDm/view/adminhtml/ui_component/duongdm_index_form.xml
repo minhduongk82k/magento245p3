@@ -1,0 +1,232 @@
+<?xml version="1.0" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">duongdm_index_form.duongdm_index_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">General Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="back" class="CS2\DuongDm\Block\Adminhtml\Post\Edit\BackButton"/>
+            <button name="delete" class="CS2\DuongDm\Block\Adminhtml\Post\Edit\DeleteButton"/>
+            <button name="save" class="CS2\DuongDm\Block\Adminhtml\Post\Edit\SaveButton"/>
+            <button name="save_and_continue" class="CS2\DuongDm\Block\Adminhtml\Post\Edit\SaveAndContinueButton"/>
+        </buttons>
+        <namespace>duongdm_index_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>duongdm_index_form.duongdm_index_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="duongdm_index_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="*/*/save"/>
+        </settings>
+        <dataProvider name="duongdm_index_form_data_source" class="CS2\DuongDm\Model\Post\DataProvider">
+            <settings>
+                <requestFieldName>blog_id</requestFieldName>
+                <primaryFieldName>blog_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="blog_details">
+        <settings>
+            <collapsible>true</collapsible>
+            <label translate="true">Blog Details</label>
+            <opened>true</opened>
+        </settings>
+        <field name="name" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">blog</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Name</label>
+                <dataScope>name</dataScope>
+            </settings>
+        </field>
+        <field name="status" sortOrder="10" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">block</item>
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Status</label>
+                <dataScope>status</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+
+        <field name="short-des" formElement="textarea">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">blog</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Short Description</label>
+                <dataScope>short_des</dataScope>
+            </settings>
+        </field>
+        <field name="image" sortOrder="40" formElement="imageUploader">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">category</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+                <dataType>string</dataType>
+                <label translate="true">Image</label>
+                <visible>true</visible>
+                <required>false</required>
+            </settings>
+            <formElements>
+                <imageUploader>
+                    <settings>
+                        <required>false</required>
+                        <uploaderConfig>
+                            <param xsi:type="url" name="url" path="catalog/category_image/upload"/>
+                        </uploaderConfig>
+                        <previewTmpl>Magento_Catalog/image-preview</previewTmpl>
+                        <openDialogTitle>Media Gallery</openDialogTitle>
+                        <initialMediaGalleryOpenSubpath>catalog/category</initialMediaGalleryOpenSubpath>
+                        <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+                    </settings>
+                </imageUploader>
+            </formElements>
+        </field>
+        <field name="description" template="ui/form/field" sortOrder="50" formElement="wysiwyg">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="wysiwygConfigData" xsi:type="array">
+                        <item name="height" xsi:type="string">100px</item>
+                        <item name="add_variables" xsi:type="boolean">false</item>
+                        <item name="add_widgets" xsi:type="boolean">false</item>
+                        <item name="add_images" xsi:type="boolean">true</item>
+                        <item name="add_directives" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="source" xsi:type="string">category</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Description</label>
+                <dataScope>description</dataScope>
+            </settings>
+            <formElements>
+                <wysiwyg class="Magento\Catalog\Ui\Component\Category\Form\Element\Wysiwyg">
+                    <settings>
+                        <rows>8</rows>
+                        <wysiwyg>true</wysiwyg>
+                    </settings>
+                </wysiwyg>
+            </formElements>
+        </field>
+    <field name="tag" formElement="input">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="source" xsi:type="string">post_rules</item>
+            </item>
+        </argument>
+        <settings>
+            <validation>
+                <rule name="required-entry" xsi:type="boolean">true</rule>
+            </validation>
+            <label translate="true">Tag</label>
+            <dataType>text</dataType>
+            <visible>true</visible>
+        </settings>
+    </field>
+        <field name="author" formElement="textarea">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">blog</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Author</label>
+                <dataScope>author</dataScope>
+            </settings>
+        </field>
+        <field name="public_date" formElement="date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">blog</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>date-time</dataType>
+                <label translate="true">Public Date</label>
+                <dataScope>public_date</dataScope>
+            </settings>
+        </field>
+        <field name="category" formElement="multiselect">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>int</dataType>
+                <label translate="true">Category</label>
+                <visible>true</visible>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="CS2\DuongDm\Model\Config\Source\CategoryList"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+<!--        <field name="category" formElement="multiselect">-->
+<!--            <argument name="data" xsi:type="array">-->
+<!--                <item name="config" xsi:type="array">-->
+<!--                    <item name="source" xsi:type="string">category</item>-->
+<!--                </item>-->
+<!--            </argument>-->
+<!--            <settings>-->
+<!--                <validation>-->
+<!--                    <rule name="required-entry" xsi:type="boolean">true</rule>-->
+<!--                </validation>-->
+<!--                <dataType>int</dataType>-->
+<!--                <label translate="true">category_id</label>-->
+<!--                <dataScope>website_ids</dataScope>-->
+<!--            </settings>-->
+<!--            <formElements>-->
+<!--                <multiselect>-->
+<!--                    <settings>-->
+<!--                        <options class="CS2\DuongDm\Model\Config\Source\CategoryList"/>-->
+<!--                    </settings>-->
+<!--                </multiselect>-->
+<!--            </formElements>-->
+<!--        </field>-->
+    </fieldset>
+</form>
+

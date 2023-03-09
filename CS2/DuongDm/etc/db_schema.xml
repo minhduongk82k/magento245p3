@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="cs2_duongdm_blog" resource="default" engine="innodb" comment="cs2_duongdm_blog Table">
+        <column xsi:type="int" name="blog_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="blog_id"/>
+        </constraint>
+        <column name="name" nullable="true" xsi:type="text" comment="name"/>
+        <column name="status" nullable="true" xsi:type="text" comment="status"/>
+        <column name="image" nullable="true" xsi:type="text" comment="image"/>
+        <column name="category" nullable="true" xsi:type="text" comment="category"/>
+        <column name="short_des" nullable="true" xsi:type="text" comment="short_des"/>
+        <column name="description" nullable="true" xsi:type="text" comment="description"/>
+        <column name="tag" nullable="true" xsi:type="text" comment="tag"/>
+        <column name="url" nullable="true" xsi:type="text" comment="url"/>
+        <column name="author" nullable="true" xsi:type="text" comment="author"/>
+        <column name="public_date" nullable="true" xsi:type="datetime" comment="public_date"/>
+        <column name="create_at" nullable="true" xsi:type="timestamp" comment="create_at"/>
+        <column name="update_at" nullable="true" xsi:type="timestamp" comment="update_at"/>
+    </table>
+    <table name="cs2_duongdm_connect" resource="default" engine="innodb" comment="cs2_duongdm_connect Table">
+        <column xsi:type="int" name="connect_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="connect_id"/>
+        </constraint>
+        <column xsi:type="int" name="blog_id" padding="10" unsigned="true" nullable="false" comment="Entity Id"/>
+        <column xsi:type="int" name="category_id" padding="10" unsigned="true" nullable="false" comment="Entity Id"/>
+        <constraint xsi:type="foreign" referenceId="CAT_BLO"
+                    table="cs2_duongdm_connect" column="blog_id" referenceTable="cs2_duongdm_blog"
+                    referenceColumn="blog_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="BLO_CAT"
+                    table="cs2_duongdm_connect" column="category_id" referenceTable="cs2_duongdm_category"
+                    referenceColumn="category_id" onDelete="CASCADE"/>
+
+    </table>
+    <table name="cs2_duongdm_category" resource="default" engine="innodb" comment="cs2_duongdm_category Table">
+        <column xsi:type="int" name="category_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="category_id"/>
+        </constraint>
+        <column name="name" nullable="true" xsi:type="text" comment="name"/>
+        <column name="sub_cate_id" nullable="true" xsi:type="int" comment="sub_cate_id"/>
+    </table>
+</schema>
+
+

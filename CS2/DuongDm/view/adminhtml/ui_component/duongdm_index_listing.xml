@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">duongdm_index_listing.duongdm_index_listing_data_source</item>
+            <item name="deps" xsi:type="string">duongdm_index_listing.duongdm_index_listing_data_source</item>
+        </item>
+        <item name="spinner" xsi:type="string">listing_columns</item>
+        <item name="buttons" xsi:type="array">
+            <item name="add" xsi:type="array">
+                <item name="name" xsi:type="string">create</item>
+                <item name="label" xsi:type="string" translate="true">Create New Blog</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="url" xsi:type="string">*/*/newaction</item>
+            </item>
+        </item>
+    </argument>
+    <dataSource name="duongdm_index_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <updateUrl path="mui/index/render"/>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">blog_id</param>
+            </storageConfig>
+        </settings>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider"
+                      name="duongdm_index_listing_data_source">
+            <settings>
+                <requestFieldName>blog_id</requestFieldName>
+                <primaryFieldName>blog_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <columns name="listing_columns">
+        <selectionsColumn name="blog_id">
+            <settings>
+                <indexField>blog_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="blog_id" sortOrder="1">
+            <settings>
+                <label translate="true">Id</label>
+                <filter>textRange</filter>
+                <draggable>false</draggable>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="name" sortOrder="2">
+            <settings>
+                <label translate="true">Name</label>
+                <filter>textRange</filter>
+            </settings>
+        </column>
+        <column name="status" sortOrder="3">
+            <settings>
+                <label translate="true">Status</label>
+                <filter>textRange</filter>
+            </settings>
+        </column>
+        <column name="image" sortOrder="6">
+            <settings>
+                <label translate="true">Image</label>
+                <filter>textRange</filter>
+            </settings>
+        </column>
+        <column name="category" sortOrder="7">
+            <settings>
+                <label translate="true">Category</label>
+                <filter>textRange</filter>
+            </settings>
+        </column>
+        <column name="short_des" sortOrder="8">
+            <settings>
+                <label translate="true">Short_Description</label>
+                <filter>textRange</filter>
+            </settings>
+        </column>
+        <column name="description" sortOrder="9">
+            <settings>
+                <label translate="true">Description</label>
+                <filter>textRange</filter>
+            </settings>
+        </column>
+        <column name="tag" sortOrder="10">
+            <settings>
+                <label translate="true">Tag</label>
+                <filter>textRange</filter>
+            </settings>
+        </column>
+        <column name="author" sortOrder="12">
+            <settings>
+                <label translate="true">Author</label>
+                <filter>textRange</filter>
+            </settings>
+        </column>
+        <column name="public_at" sortOrder="13">
+            <settings>
+                <label translate="true">Public Time</label>
+                <filter>textRange</filter>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="CS2\DuongDm\Ui\Component\Listing\Column\BlogActions">
+            <settings>
+                <indexField>blog_id</indexField>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>107</resizeDefaultWidth>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

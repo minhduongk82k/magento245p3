@@ -1,0 +1,28 @@
+<?php
+/** @var \CS2\DuongDm\Block\Frontend\Blog $block */
+$blog = $block->getBlogDetails();
+?>
+<?php
+
+?>
+<table>
+
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Author</th>
+        <th>Short Description</th>
+        <th>Public date</th>
+    </tr>
+    <tr>
+        <td><?= $blog->getBlogId() ?></td>
+        <td><?= $blog->getName() ?></td>
+        <td><?= $blog->getAuthor() ?></td>
+        <td><?= $blog->getShortDes() ?></td>
+        <td><?= $blog->getPublicDate() ?></td>
+    </tr>
+</table>
+
+<?php
+
+?>

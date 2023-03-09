@@ -1,0 +1,8 @@
+<?php
+/** @var BrandInProduct $block */
+
+$brand = $block->showBrandByProductID();
+?>
+<div class="brand" >
+    <img src="<?= $block->getBaseUrl() . "media/catalog/tmp/category/" . $brand['image'];?>" alt="">
+</div>

@@ -1,0 +1,73 @@
+<?xml version="1.0" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">duongdm_category_form.duongdm_category_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">General Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="back" class="CS2\DuongDm\Block\Adminhtml\Category\Edit\BackButton"/>
+            <button name="delete" class="CS2\DuongDm\Block\Adminhtml\Category\Edit\DeleteButton"/>
+            <button name="save" class="CS2\DuongDm\Block\Adminhtml\Category\Edit\SaveButton"/>
+            <button name="save_and_continue" class="CS2\DuongDm\Block\Adminhtml\Category\Edit\SaveAndCountinueButton"/>
+        </buttons>
+        <namespace>duongdm_category_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>duongdm_category_form.duongdm_category_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="duongdm_category_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="*/*/save"/>
+        </settings>
+        <dataProvider name="duongdm_category_form_data_source" class="CS2\DuongDm\Model\Category\DataProvider">
+            <settings>
+                <requestFieldName>category_id</requestFieldName>
+                <primaryFieldName>category_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="name">
+        <settings>
+            <collapsible>true</collapsible>
+            <label translate="true">Blog Details</label>
+            <opened>true</opened>
+        </settings>
+        <field name="name" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">blog</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Name</label>
+                <dataScope>name</dataScope>
+            </settings>
+        </field>
+
+        <field name="cate_parent_id" formElement="textarea">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">blog</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Parent_Id</label>
+                <dataScope>cate_parent_id</dataScope>
+            </settings>
+        </field>
+
+    </fieldset>
+</form>
+
